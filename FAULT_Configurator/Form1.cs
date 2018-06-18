@@ -10,9 +10,13 @@ using System.Windows.Forms;
 
 namespace FAULT_Configurator
 {
-    public partial class Form1 : Form
+    public partial class frmPrincipale : Form
     {
-        public Form1()
+        private string[] tabTxtFaultType = new string[] { "MINEUR", "MAJEUR", "INFO" };
+        private string[] tabTxtFaultState = new string[] { "INACTIF", "ACTIF" };
+        private Fault SelectedFault; //TODO 
+
+        public frmPrincipale()
         {
             InitializeComponent();
         }
