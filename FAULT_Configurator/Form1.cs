@@ -27,18 +27,37 @@ namespace FAULT_Configurator
             
         }
 
-        private void reloadFaultConf(ref Fault def)
+        private void fillFaultConf(Fault def)
         {
             grpDefaultConf.Enabled = true;
+            txtFaultName.Text = def.Name;
+            cbxFaultType.SelectedIndex = (int)def.Type;
+            cbxFaultInitState.SelectedIndex = (int)def.InitState;
 
 
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int foundIndex;
+            
             if (listView1.SelectedItems.Count > 0)
             {
-                label1.Text = listView1.SelectedItems[0].Text;
+                //label1.Text = listView1.SelectedItems[0].Text;
+                try
+                {
+                    foundIndex = listView1.Items[listView1.SelectedItems[0].Text].Index;
+                }
+                catch (Exception)
+                {
+
+                    return;
+                }
+
+                label1.Text = fltList.ElementAt(foundIndex).Name;
+                fillFaultConf(fltList.ElementAt(foundIndex));
+                //TODO Enable groupbox and fill the fault
+
             }
 
         }

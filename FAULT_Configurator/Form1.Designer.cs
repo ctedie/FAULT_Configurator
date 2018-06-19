@@ -28,27 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "FLT_GLISSEMENT_1",
-            "MAJOR"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "FLT_GLISSEMENT_2",
-            "MAJOR"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ALM_GLISSEMENT_3",
-            "MINOR"}, -1);
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnName1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnType1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpDefaultConf = new System.Windows.Forms.GroupBox();
-            this.cbxType = new System.Windows.Forms.ComboBox();
-            this.cbxInit = new System.Windows.Forms.ComboBox();
+            this.cbxFaultType = new System.Windows.Forms.ComboBox();
+            this.cbxFaultInitState = new System.Windows.Forms.ComboBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFaultName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,11 +65,6 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName1,
             this.columnType1});
-            listViewItem2.StateImageIndex = 0;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
             this.listView1.Location = new System.Drawing.Point(26, 38);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -100,14 +86,14 @@
             // 
             // grpDefaultConf
             // 
-            this.grpDefaultConf.Controls.Add(this.cbxType);
-            this.grpDefaultConf.Controls.Add(this.cbxInit);
+            this.grpDefaultConf.Controls.Add(this.cbxFaultType);
+            this.grpDefaultConf.Controls.Add(this.cbxFaultInitState);
             this.grpDefaultConf.Controls.Add(this.textBox8);
             this.grpDefaultConf.Controls.Add(this.textBox7);
             this.grpDefaultConf.Controls.Add(this.textBox6);
             this.grpDefaultConf.Controls.Add(this.textBox5);
             this.grpDefaultConf.Controls.Add(this.textBox4);
-            this.grpDefaultConf.Controls.Add(this.textBox1);
+            this.grpDefaultConf.Controls.Add(this.txtFaultName);
             this.grpDefaultConf.Controls.Add(this.label5);
             this.grpDefaultConf.Controls.Add(this.label4);
             this.grpDefaultConf.Controls.Add(this.label3);
@@ -124,27 +110,31 @@
             this.grpDefaultConf.TabStop = false;
             this.grpDefaultConf.Text = "Configuration du défaut";
             // 
-            // cbxType
+            // cbxFaultType
             // 
-            this.cbxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxType.FormattingEnabled = true;
-            this.cbxType.Items.AddRange(new object[] {
+            this.cbxFaultType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxFaultType.FormattingEnabled = true;
+            this.cbxFaultType.Items.AddRange(new object[] {
             "MINEUR",
             "MAJEUR",
             "INFO"});
-            this.cbxType.Location = new System.Drawing.Point(149, 58);
-            this.cbxType.Name = "cbxType";
-            this.cbxType.Size = new System.Drawing.Size(157, 21);
-            this.cbxType.TabIndex = 2;
+            this.cbxFaultType.Location = new System.Drawing.Point(149, 58);
+            this.cbxFaultType.Name = "cbxFaultType";
+            this.cbxFaultType.Size = new System.Drawing.Size(157, 21);
+            this.cbxFaultType.TabIndex = 2;
             // 
-            // cbxInit
+            // cbxFaultInitState
             // 
-            this.cbxInit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxInit.FormattingEnabled = true;
-            this.cbxInit.Location = new System.Drawing.Point(149, 86);
-            this.cbxInit.Name = "cbxInit";
-            this.cbxInit.Size = new System.Drawing.Size(157, 21);
-            this.cbxInit.TabIndex = 2;
+            this.cbxFaultInitState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxFaultInitState.FormattingEnabled = true;
+            this.cbxFaultInitState.Items.AddRange(new object[] {
+            "MINEUR",
+            "MAJEUR",
+            "INFO"});
+            this.cbxFaultInitState.Location = new System.Drawing.Point(149, 86);
+            this.cbxFaultInitState.Name = "cbxFaultInitState";
+            this.cbxFaultInitState.Size = new System.Drawing.Size(157, 21);
+            this.cbxFaultInitState.TabIndex = 2;
             // 
             // textBox8
             // 
@@ -181,12 +171,12 @@
             this.textBox4.Size = new System.Drawing.Size(369, 20);
             this.textBox4.TabIndex = 1;
             // 
-            // textBox1
+            // txtFaultName
             // 
-            this.textBox1.Location = new System.Drawing.Point(149, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(369, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtFaultName.Location = new System.Drawing.Point(149, 29);
+            this.txtFaultName.Name = "txtFaultName";
+            this.txtFaultName.Size = new System.Drawing.Size(369, 20);
+            this.txtFaultName.TabIndex = 1;
             // 
             // label5
             // 
@@ -373,12 +363,12 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFaultName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button dtnDelete;
-        private System.Windows.Forms.ComboBox cbxType;
-        private System.Windows.Forms.ComboBox cbxInit;
+        private System.Windows.Forms.ComboBox cbxFaultType;
+        private System.Windows.Forms.ComboBox cbxFaultInitState;
         private System.Windows.Forms.Label label1;
     }
 }

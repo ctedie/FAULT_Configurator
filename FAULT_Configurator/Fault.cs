@@ -32,6 +32,8 @@ namespace FAULT_Configurator
 
         public Fault()
         {
+            this.Type = FaultType.INFO;
+            this.InitState = FaultType.INFO;
 
         }
     }
