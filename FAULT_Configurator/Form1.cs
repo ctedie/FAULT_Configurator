@@ -14,7 +14,17 @@ namespace FAULT_Configurator
 {
     public partial class frmPrincipale : Form
     {
-        private const string m_WindowsTitle = "Fault Configurator";
+        private const string FIELD_FAULT_NAME = "fault_name=";
+        private const string FIELD_FAULT_TYPE = "fault_name=";
+        private const string FIELD_FAULT_INIT = "fault_init=";
+        private const string FIELD_FAULT_APPARITION_CONDITION = "app_conditon=";
+        private const string FIELD_FAULT_APPARITION_ACTION = "app_action=";
+        private const string FIELD_FAULT_PRESENCE_ACTION = "presence_action=";
+        private const string FIELD_FAULT_DISPARITION_CONDITION = "disp_condition=";
+        private const string FIELD_FAULT_DISPARITION_ACTION = "disp_action=";
+
+        private const string WINDOWS_TITLE = "Fault Configurator";
+
         private string m_TitleComplement = " - No File Selected";
         private string[] m_TabTxtFaultType = new string[] { "MINEUR", "MAJEUR", "INFO" };
         private string[] m_TabTxtFaultState = new string[] { "INACTIF", "ACTIF" };
@@ -59,25 +69,6 @@ namespace FAULT_Configurator
 
         }
 
-        private void refreshFaultList()
-        {
-            listView1.Clear();
-
-            foreach (var item in m_FltList)
-            {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Name = item.Name;
-                lvi.Text = item.Name;
-                lvi.SubItems.Add(item.Type.ToString());
-
-                listView1.Items.Add(lvi);
-            }
-
-            listView1.Update();
-
-            //listView1.Refresh();
-
-        }
 
         void saveFaults(string strFilename)
         {
@@ -111,14 +102,14 @@ namespace FAULT_Configurator
 
                 //TODO Save Fault Config
                 file.WriteLine("[" + strFaultName + "]");
-                file.WriteLine(strFaultName);
-                file.WriteLine(strFaultType);
-                file.WriteLine(strFaultInitState);
-                file.WriteLine(strFaultAppCond);
-                file.WriteLine(strFaultAppAct);
-                file.WriteLine(strFaultPresAct);
-                file.WriteLine(strFaultDispCond);
-                file.WriteLine(strFaultDispAct);
+                file.WriteLine(FIELD_FAULT_NAME + strFaultName);
+                file.WriteLine(FIELD_FAULT_TYPE + strFaultType);
+                file.WriteLine(FIELD_FAULT_INIT + strFaultInitState);
+                file.WriteLine(FIELD_FAULT_APPARITION_CONDITION + strFaultAppCond);
+                file.WriteLine(FIELD_FAULT_APPARITION_ACTION + strFaultAppAct);
+                file.WriteLine(FIELD_FAULT_PRESENCE_ACTION + strFaultPresAct);
+                file.WriteLine(FIELD_FAULT_DISPARITION_CONDITION + strFaultDispCond);
+                file.WriteLine(FIELD_FAULT_DISPARITION_ACTION + strFaultDispAct);
                 file.WriteLine("");
 
             }
@@ -162,9 +153,29 @@ namespace FAULT_Configurator
 
         }
 
+        private void refreshFaultList()
+        {
+            listView1.Items.Clear();
+
+            foreach (var item in m_FltList)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Name = item.Name;
+                lvi.Text = item.Name;
+                lvi.SubItems.Add(item.Type.ToString());
+
+                listView1.Items.Add(lvi);
+            }
+
+            listView1.Update();
+
+            //listView1.Refresh();
+
+        }
+
         private void frmPrincipale_Load(object sender, EventArgs e)
         {
-            this.Text = m_WindowsTitle + m_TitleComplement;
+            this.Text = WINDOWS_TITLE + m_TitleComplement;
 
 
             Fault defaut = new Fault();
@@ -179,7 +190,7 @@ namespace FAULT_Configurator
 
         private void refreshTitle()
         {
-            this.Text = m_WindowsTitle + m_TitleComplement;
+            this.Text = WINDOWS_TITLE + m_TitleComplement;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -273,7 +284,7 @@ namespace FAULT_Configurator
             m_SelectedFault.TextActionDisp = txtDisAct.Text;
 
             //TODO Refreshe fault List on IHM
-
+            refreshFaultList();
         }
 
         private void btnNewFault_Click(object sender, EventArgs e)
