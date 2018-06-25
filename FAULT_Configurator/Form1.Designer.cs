@@ -34,11 +34,11 @@
             this.grpDefaultConf = new System.Windows.Forms.GroupBox();
             this.cbxFaultType = new System.Windows.Forms.ComboBox();
             this.cbxFaultInitState = new System.Windows.Forms.ComboBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtDisAct = new System.Windows.Forms.TextBox();
+            this.txtDisCond = new System.Windows.Forms.TextBox();
+            this.txtPresAct = new System.Windows.Forms.TextBox();
+            this.txtAppAct = new System.Windows.Forms.TextBox();
+            this.txtAppCond = new System.Windows.Forms.TextBox();
             this.txtFaultName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,12 +50,16 @@
             this.lblNomDefaut = new System.Windows.Forms.Label();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.menuFichier = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOutils = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAide = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnNewFault = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.dtnDelete = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.grpDefaultConf.SuspendLayout();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
@@ -88,11 +92,11 @@
             // 
             this.grpDefaultConf.Controls.Add(this.cbxFaultType);
             this.grpDefaultConf.Controls.Add(this.cbxFaultInitState);
-            this.grpDefaultConf.Controls.Add(this.textBox8);
-            this.grpDefaultConf.Controls.Add(this.textBox7);
-            this.grpDefaultConf.Controls.Add(this.textBox6);
-            this.grpDefaultConf.Controls.Add(this.textBox5);
-            this.grpDefaultConf.Controls.Add(this.textBox4);
+            this.grpDefaultConf.Controls.Add(this.txtDisAct);
+            this.grpDefaultConf.Controls.Add(this.txtDisCond);
+            this.grpDefaultConf.Controls.Add(this.txtPresAct);
+            this.grpDefaultConf.Controls.Add(this.txtAppAct);
+            this.grpDefaultConf.Controls.Add(this.txtAppCond);
             this.grpDefaultConf.Controls.Add(this.txtFaultName);
             this.grpDefaultConf.Controls.Add(this.label5);
             this.grpDefaultConf.Controls.Add(this.label4);
@@ -128,48 +132,47 @@
             this.cbxFaultInitState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxFaultInitState.FormattingEnabled = true;
             this.cbxFaultInitState.Items.AddRange(new object[] {
-            "MINEUR",
-            "MAJEUR",
-            "INFO"});
+            "INACTIF",
+            "ACTIF"});
             this.cbxFaultInitState.Location = new System.Drawing.Point(149, 86);
             this.cbxFaultInitState.Name = "cbxFaultInitState";
             this.cbxFaultInitState.Size = new System.Drawing.Size(157, 21);
             this.cbxFaultInitState.TabIndex = 2;
             // 
-            // textBox8
+            // txtDisAct
             // 
-            this.textBox8.Location = new System.Drawing.Point(149, 318);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(369, 20);
-            this.textBox8.TabIndex = 1;
+            this.txtDisAct.Location = new System.Drawing.Point(149, 318);
+            this.txtDisAct.Name = "txtDisAct";
+            this.txtDisAct.Size = new System.Drawing.Size(369, 20);
+            this.txtDisAct.TabIndex = 1;
             // 
-            // textBox7
+            // txtDisCond
             // 
-            this.textBox7.Location = new System.Drawing.Point(149, 275);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(369, 20);
-            this.textBox7.TabIndex = 1;
+            this.txtDisCond.Location = new System.Drawing.Point(149, 275);
+            this.txtDisCond.Name = "txtDisCond";
+            this.txtDisCond.Size = new System.Drawing.Size(369, 20);
+            this.txtDisCond.TabIndex = 1;
             // 
-            // textBox6
+            // txtPresAct
             // 
-            this.textBox6.Location = new System.Drawing.Point(149, 232);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(369, 20);
-            this.textBox6.TabIndex = 1;
+            this.txtPresAct.Location = new System.Drawing.Point(149, 232);
+            this.txtPresAct.Name = "txtPresAct";
+            this.txtPresAct.Size = new System.Drawing.Size(369, 20);
+            this.txtPresAct.TabIndex = 1;
             // 
-            // textBox5
+            // txtAppAct
             // 
-            this.textBox5.Location = new System.Drawing.Point(149, 189);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(369, 20);
-            this.textBox5.TabIndex = 1;
+            this.txtAppAct.Location = new System.Drawing.Point(149, 189);
+            this.txtAppAct.Name = "txtAppAct";
+            this.txtAppAct.Size = new System.Drawing.Size(369, 20);
+            this.txtAppAct.TabIndex = 1;
             // 
-            // textBox4
+            // txtAppCond
             // 
-            this.textBox4.Location = new System.Drawing.Point(149, 146);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(369, 20);
-            this.textBox4.TabIndex = 1;
+            this.txtAppCond.Location = new System.Drawing.Point(149, 146);
+            this.txtAppCond.Name = "txtAppCond";
+            this.txtAppCond.Size = new System.Drawing.Size(369, 20);
+            this.txtAppCond.TabIndex = 1;
             // 
             // txtFaultName
             // 
@@ -263,9 +266,33 @@
             // 
             // menuFichier
             // 
+            this.menuFichier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem});
             this.menuFichier.Name = "menuFichier";
             this.menuFichier.Size = new System.Drawing.Size(54, 20);
             this.menuFichier.Text = "&Fichier";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.openToolStripMenuItem.Text = "Open...";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveAsToolStripMenuItem.Text = "Save As...";
             // 
             // menuOutils
             // 
@@ -279,14 +306,15 @@
             this.menuAide.Size = new System.Drawing.Size(43, 20);
             this.menuAide.Text = "&Aide";
             // 
-            // btnAdd
+            // btnNewFault
             // 
-            this.btnAdd.Location = new System.Drawing.Point(397, 463);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Ajouter";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnNewFault.Location = new System.Drawing.Point(397, 463);
+            this.btnNewFault.Name = "btnNewFault";
+            this.btnNewFault.Size = new System.Drawing.Size(75, 23);
+            this.btnNewFault.TabIndex = 3;
+            this.btnNewFault.Text = "Nouveau";
+            this.btnNewFault.UseVisualStyleBackColor = true;
+            this.btnNewFault.Click += new System.EventHandler(this.btnNewFault_Click);
             // 
             // btnSave
             // 
@@ -296,6 +324,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // dtnDelete
             // 
@@ -323,7 +352,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtnDelete);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnNewFault);
             this.Controls.Add(this.grpDefaultConf);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.menuBar);
@@ -358,18 +387,22 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCondApparition;
         private System.Windows.Forms.Label lblEtatInit;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtDisAct;
+        private System.Windows.Forms.TextBox txtDisCond;
+        private System.Windows.Forms.TextBox txtPresAct;
+        private System.Windows.Forms.TextBox txtAppAct;
+        private System.Windows.Forms.TextBox txtAppCond;
         private System.Windows.Forms.TextBox txtFaultName;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnNewFault;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button dtnDelete;
         private System.Windows.Forms.ComboBox cbxFaultType;
         private System.Windows.Forms.ComboBox cbxFaultInitState;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
