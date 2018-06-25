@@ -58,7 +58,6 @@
             this.btnNewFault = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.dtnDelete = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.grpDefaultConf.SuspendLayout();
             this.menuBar.SuspendLayout();
@@ -334,22 +333,13 @@
             this.dtnDelete.TabIndex = 3;
             this.dtnDelete.Text = "Supprimer";
             this.dtnDelete.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(534, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.dtnDelete.Click += new System.EventHandler(this.dtnDelete_Click);
             // 
             // frmPrincipale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 539);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dtnDelete);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnNewFault);
@@ -398,7 +388,6 @@
         private System.Windows.Forms.Button dtnDelete;
         private System.Windows.Forms.ComboBox cbxFaultType;
         private System.Windows.Forms.ComboBox cbxFaultInitState;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
