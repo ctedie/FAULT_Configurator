@@ -123,7 +123,9 @@ namespace FAULT_Configurator
         {
             m_FltList.Clear();
 
-            //TODO Parse file and add faults to list
+            parseConfigFile(m_StrFaultFile);
+
+            refreshFaultList();
 
         }
 
@@ -209,9 +211,7 @@ namespace FAULT_Configurator
                 default:
                     return;
             }
-            parseConfigFile(m_StrFaultFile);
-
-            refreshFaultList();
+            openFaults(m_StrFaultFile);
 
         }
 

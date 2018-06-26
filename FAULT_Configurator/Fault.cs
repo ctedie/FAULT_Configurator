@@ -8,8 +8,8 @@ namespace FAULT_Configurator
 {
     enum FaultType
     {
-        MINOR = 0,
-        MAJOR = 1,
+        MINEUR = 0,
+        MAJEUR = 1,
         INFO = 2
     }
 
