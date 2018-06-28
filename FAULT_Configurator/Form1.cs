@@ -12,6 +12,7 @@ using System.Diagnostics;
 
 namespace FAULT_Configurator
 {
+
     public partial class frmPrincipale : Form
     {
         private const string FIELD_FAULT_NAME = "fault_name";
@@ -346,6 +347,32 @@ namespace FAULT_Configurator
                 MessageBox.Show("No Fault file selected.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+        }
+
+        private void exporterListeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result;
+            OpenFileDialog ofd = new OpenFileDialog();
+            string strFileName;
+            List<string> strFaultNames = new List<string>();
+
+            result = ofd.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    strFileName = ofd.FileName;
+                    break;
+                default:
+                    return;
+            }
+
+            //File.Create(strFileName);
+            foreach (Fault item in m_FltList)
+            {
+                strFaultNames.Add(item.Name);
+            }
+            File.WriteAllLines(strFileName, strFaultNames);
 
         }
     }
