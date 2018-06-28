@@ -63,12 +63,17 @@
             this.dtnDelete = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.exporterListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblFaultDescription = new System.Windows.Forms.Label();
+            this.txtFaultDescription = new System.Windows.Forms.TextBox();
             this.grpDefaultConf.SuspendLayout();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
             // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
             this.columnType});
@@ -79,6 +84,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnName
@@ -93,6 +99,8 @@
             // 
             // grpDefaultConf
             // 
+            this.grpDefaultConf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpDefaultConf.Controls.Add(this.lblFaultDescription);
             this.grpDefaultConf.Controls.Add(this.cbxFaultType);
             this.grpDefaultConf.Controls.Add(this.cbxFaultInitState);
             this.grpDefaultConf.Controls.Add(this.txtDisAct);
@@ -100,6 +108,7 @@
             this.grpDefaultConf.Controls.Add(this.txtPresAct);
             this.grpDefaultConf.Controls.Add(this.txtAppAct);
             this.grpDefaultConf.Controls.Add(this.txtAppCond);
+            this.grpDefaultConf.Controls.Add(this.txtFaultDescription);
             this.grpDefaultConf.Controls.Add(this.txtFaultName);
             this.grpDefaultConf.Controls.Add(this.label5);
             this.grpDefaultConf.Controls.Add(this.label4);
@@ -125,7 +134,7 @@
             "MINEUR",
             "MAJEUR",
             "INFO"});
-            this.cbxFaultType.Location = new System.Drawing.Point(149, 58);
+            this.cbxFaultType.Location = new System.Drawing.Point(149, 88);
             this.cbxFaultType.Name = "cbxFaultType";
             this.cbxFaultType.Size = new System.Drawing.Size(157, 21);
             this.cbxFaultType.TabIndex = 2;
@@ -137,49 +146,49 @@
             this.cbxFaultInitState.Items.AddRange(new object[] {
             "INACTIF",
             "ACTIF"});
-            this.cbxFaultInitState.Location = new System.Drawing.Point(149, 86);
+            this.cbxFaultInitState.Location = new System.Drawing.Point(149, 116);
             this.cbxFaultInitState.Name = "cbxFaultInitState";
             this.cbxFaultInitState.Size = new System.Drawing.Size(157, 21);
             this.cbxFaultInitState.TabIndex = 2;
             // 
             // txtDisAct
             // 
-            this.txtDisAct.Location = new System.Drawing.Point(149, 318);
+            this.txtDisAct.Location = new System.Drawing.Point(149, 348);
             this.txtDisAct.Name = "txtDisAct";
             this.txtDisAct.Size = new System.Drawing.Size(369, 20);
             this.txtDisAct.TabIndex = 1;
             // 
             // txtDisCond
             // 
-            this.txtDisCond.Location = new System.Drawing.Point(149, 275);
+            this.txtDisCond.Location = new System.Drawing.Point(149, 305);
             this.txtDisCond.Name = "txtDisCond";
             this.txtDisCond.Size = new System.Drawing.Size(369, 20);
             this.txtDisCond.TabIndex = 1;
             // 
             // txtPresAct
             // 
-            this.txtPresAct.Location = new System.Drawing.Point(149, 232);
+            this.txtPresAct.Location = new System.Drawing.Point(149, 262);
             this.txtPresAct.Name = "txtPresAct";
             this.txtPresAct.Size = new System.Drawing.Size(369, 20);
             this.txtPresAct.TabIndex = 1;
             // 
             // txtAppAct
             // 
-            this.txtAppAct.Location = new System.Drawing.Point(149, 189);
+            this.txtAppAct.Location = new System.Drawing.Point(149, 219);
             this.txtAppAct.Name = "txtAppAct";
             this.txtAppAct.Size = new System.Drawing.Size(369, 20);
             this.txtAppAct.TabIndex = 1;
             // 
             // txtAppCond
             // 
-            this.txtAppCond.Location = new System.Drawing.Point(149, 146);
+            this.txtAppCond.Location = new System.Drawing.Point(149, 176);
             this.txtAppCond.Name = "txtAppCond";
             this.txtAppCond.Size = new System.Drawing.Size(369, 20);
             this.txtAppCond.TabIndex = 1;
             // 
             // txtFaultName
             // 
-            this.txtFaultName.Location = new System.Drawing.Point(149, 29);
+            this.txtFaultName.Location = new System.Drawing.Point(149, 59);
             this.txtFaultName.Name = "txtFaultName";
             this.txtFaultName.Size = new System.Drawing.Size(369, 20);
             this.txtFaultName.TabIndex = 1;
@@ -187,7 +196,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 321);
+            this.label5.Location = new System.Drawing.Point(22, 351);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 13);
             this.label5.TabIndex = 0;
@@ -196,7 +205,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 278);
+            this.label4.Location = new System.Drawing.Point(22, 308);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 13);
             this.label4.TabIndex = 0;
@@ -205,7 +214,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 235);
+            this.label3.Location = new System.Drawing.Point(22, 265);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 0;
@@ -214,7 +223,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 192);
+            this.label2.Location = new System.Drawing.Point(22, 222);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 0;
@@ -223,7 +232,7 @@
             // lblCondApparition
             // 
             this.lblCondApparition.AutoSize = true;
-            this.lblCondApparition.Location = new System.Drawing.Point(22, 149);
+            this.lblCondApparition.Location = new System.Drawing.Point(22, 179);
             this.lblCondApparition.Name = "lblCondApparition";
             this.lblCondApparition.Size = new System.Drawing.Size(108, 13);
             this.lblCondApparition.TabIndex = 0;
@@ -232,7 +241,7 @@
             // lblEtatInit
             // 
             this.lblEtatInit.AutoSize = true;
-            this.lblEtatInit.Location = new System.Drawing.Point(22, 89);
+            this.lblEtatInit.Location = new System.Drawing.Point(22, 119);
             this.lblEtatInit.Name = "lblEtatInit";
             this.lblEtatInit.Size = new System.Drawing.Size(53, 13);
             this.lblEtatInit.TabIndex = 0;
@@ -241,7 +250,7 @@
             // lblTypeDefaut
             // 
             this.lblTypeDefaut.AutoSize = true;
-            this.lblTypeDefaut.Location = new System.Drawing.Point(22, 61);
+            this.lblTypeDefaut.Location = new System.Drawing.Point(22, 91);
             this.lblTypeDefaut.Name = "lblTypeDefaut";
             this.lblTypeDefaut.Size = new System.Drawing.Size(31, 13);
             this.lblTypeDefaut.TabIndex = 0;
@@ -250,7 +259,7 @@
             // lblNomDefaut
             // 
             this.lblNomDefaut.AutoSize = true;
-            this.lblNomDefaut.Location = new System.Drawing.Point(22, 33);
+            this.lblNomDefaut.Location = new System.Drawing.Point(22, 63);
             this.lblNomDefaut.Name = "lblNomDefaut";
             this.lblNomDefaut.Size = new System.Drawing.Size(29, 13);
             this.lblNomDefaut.TabIndex = 0;
@@ -333,6 +342,7 @@
             // 
             // btnNewFault
             // 
+            this.btnNewFault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewFault.Location = new System.Drawing.Point(397, 463);
             this.btnNewFault.Name = "btnNewFault";
             this.btnNewFault.Size = new System.Drawing.Size(75, 23);
@@ -343,6 +353,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(558, 464);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
@@ -353,6 +364,7 @@
             // 
             // dtnDelete
             // 
+            this.dtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dtnDelete.Location = new System.Drawing.Point(719, 462);
             this.dtnDelete.Name = "dtnDelete";
             this.dtnDelete.Size = new System.Drawing.Size(75, 23);
@@ -368,6 +380,22 @@
             this.exporterListeToolStripMenuItem.Text = "Exporter liste...";
             this.exporterListeToolStripMenuItem.Click += new System.EventHandler(this.exporterListeToolStripMenuItem_Click);
             // 
+            // lblFaultDescription
+            // 
+            this.lblFaultDescription.AutoSize = true;
+            this.lblFaultDescription.Location = new System.Drawing.Point(22, 37);
+            this.lblFaultDescription.Name = "lblFaultDescription";
+            this.lblFaultDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblFaultDescription.TabIndex = 3;
+            this.lblFaultDescription.Text = "Description";
+            // 
+            // txtFaultDescription
+            // 
+            this.txtFaultDescription.Location = new System.Drawing.Point(149, 34);
+            this.txtFaultDescription.Name = "txtFaultDescription";
+            this.txtFaultDescription.Size = new System.Drawing.Size(369, 20);
+            this.txtFaultDescription.TabIndex = 1;
+            // 
             // frmPrincipale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,6 +408,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.menuBar);
             this.MainMenuStrip = this.menuBar;
+            this.MinimumSize = new System.Drawing.Size(920, 577);
             this.Name = "frmPrincipale";
             this.Text = "Fault Configurator";
             this.Load += new System.EventHandler(this.frmPrincipale_Load);
@@ -429,6 +458,8 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem genererCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exporterListeToolStripMenuItem;
+        private System.Windows.Forms.Label lblFaultDescription;
+        private System.Windows.Forms.TextBox txtFaultDescription;
     }
 }
 

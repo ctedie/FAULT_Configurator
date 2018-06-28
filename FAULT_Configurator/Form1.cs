@@ -16,6 +16,7 @@ namespace FAULT_Configurator
     public partial class frmPrincipale : Form
     {
         private const string FIELD_FAULT_NAME = "fault_name";
+        private const string FIELD_FAULT_DESCRIPTION = "fault_desc";
         private const string FIELD_FAULT_TYPE = "fault_type";
         private const string FIELD_FAULT_INIT = "fault_init";
         private const string FIELD_FAULT_APPARITION_CONDITION = "app_conditon";
@@ -44,6 +45,7 @@ namespace FAULT_Configurator
         void eraseFaultConf()
         {
             txtFaultName.Text = "";
+            txtFaultDescription.Text = "";
             cbxFaultInitState.SelectedIndex = -1;
             cbxFaultType.SelectedIndex = -1;
 
@@ -60,6 +62,7 @@ namespace FAULT_Configurator
             grpDefaultConf.Enabled = true;
 
             txtFaultName.Text = def.Name;
+            txtFaultDescription.Text = def.TextDescription;
             cbxFaultType.SelectedIndex = (int)def.Type;
             cbxFaultInitState.SelectedIndex = (int)def.InitState;
 
@@ -75,6 +78,7 @@ namespace FAULT_Configurator
         void saveFaults(string strFilename)
         {
             string strFaultName;
+            string strFaultDesc;
             int iFaultType;
             int iFaultInitState;
             string strFaultAppCond;
@@ -94,6 +98,7 @@ namespace FAULT_Configurator
             {
                 //TODO Create Fault section
                 strFaultName = fltItem.Name;
+                strFaultDesc = fltItem.TextDescription;
                 iFaultType = (int)fltItem.Type;
                 iFaultInitState = (int)fltItem.InitState;
                 strFaultPresAct = fltItem.TextPresence;
@@ -105,6 +110,7 @@ namespace FAULT_Configurator
                 //TODO Save Fault Config
                 file.WriteLine("[" + strFaultName + "]");
                 file.WriteLine(FIELD_FAULT_NAME + FIELD_SEPARATOR + strFaultName);
+                file.WriteLine(FIELD_FAULT_DESCRIPTION + FIELD_SEPARATOR + strFaultDesc);
                 file.WriteLine(FIELD_FAULT_TYPE + FIELD_SEPARATOR + iFaultType.ToString());
                 file.WriteLine(FIELD_FAULT_INIT + FIELD_SEPARATOR + iFaultInitState.ToString());
                 file.WriteLine(FIELD_FAULT_APPARITION_CONDITION + FIELD_SEPARATOR + strFaultAppCond);
@@ -149,8 +155,9 @@ namespace FAULT_Configurator
                 }
 
                 
-                m_SelectedFault = m_FltList.ElementAt(foundIndex);
-                fillFaultConf(m_FltList.ElementAt(foundIndex));
+                //m_SelectedFault = m_FltList.ElementAt(foundIndex);
+                m_SelectedFault = m_FltList.Find(delegate (Fault f) { return f.Name == listView1.SelectedItems[0].Text; });
+                fillFaultConf(m_SelectedFault);
                 //TODO Enable groupbox and fill the fault
 
             }
@@ -229,8 +236,7 @@ namespace FAULT_Configurator
                 do
                 {
                     string[] strData;
-                    strLine = file.ReadLine();
-                    if(strLine == "EOF")
+                    if(file.EndOfStream || ((strLine = file.ReadLine()) == "EOF"))
                     {
                         return;
                     }
@@ -249,6 +255,9 @@ namespace FAULT_Configurator
                     {
                         case FIELD_FAULT_NAME:
                             fault.Name = strData[1];
+                            break;
+                        case FIELD_FAULT_DESCRIPTION:
+                            fault.TextDescription = strData[1];
                             break;
                         case FIELD_FAULT_TYPE:
                             fault.Type = (FaultType)int.Parse(strData[1]);
@@ -302,6 +311,7 @@ namespace FAULT_Configurator
             m_SelectedFault.InitState = (FaultState)cbxFaultInitState.SelectedIndex;
             m_SelectedFault.Type = (FaultType)cbxFaultType.SelectedIndex;
 
+            m_SelectedFault.TextDescription = txtFaultDescription.Text;
             m_SelectedFault.TextConditionApp = txtAppCond.Text;
             m_SelectedFault.TextActionApp = txtAppAct.Text;
             m_SelectedFault.TextPresence = txtPresAct.Text;
@@ -374,6 +384,12 @@ namespace FAULT_Configurator
             }
             File.WriteAllLines(strFileName, strFaultNames);
 
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            listView1.Sorting = SortOrder.Ascending;
+            listView1.Sort();
         }
     }
 }

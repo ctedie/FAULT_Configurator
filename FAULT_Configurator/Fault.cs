@@ -25,6 +25,7 @@ namespace FAULT_Configurator
         public FaultType Type { get; set; }
         public FaultState InitState { get; set; }
 
+        public string TextDescription { get; set; }
         public string TextConditionApp { get; set; }
         public string TextActionApp { get; set; }
         public string TextConditionDisp { get; set; }
