@@ -155,10 +155,8 @@ namespace FAULT_Configurator
                 }
 
                 
-                //m_SelectedFault = m_FltList.ElementAt(foundIndex);
                 m_SelectedFault = m_FltList.Find(delegate (Fault f) { return f.Name == listView1.SelectedItems[0].Text; });
                 fillFaultConf(m_SelectedFault);
-                //TODO Enable groupbox and fill the fault
 
             }
 
@@ -191,15 +189,6 @@ namespace FAULT_Configurator
         {
             this.Text = WINDOWS_TITLE + m_TitleComplement;
 
-
-            //Fault defaut = new Fault();
-            //defaut.Name = "DEFAUT_TEST";
-            //defaut.Type = FaultType.MINOR;
-            //defaut.TextPresence = "Allumer LED";
-            //m_FltList.Add(defaut);
-
-            //refreshFaultList();
-
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -227,8 +216,6 @@ namespace FAULT_Configurator
         {
             StreamReader file = new StreamReader(strFilename);
             string strLine = "";
-           //  strData = new string[2];
-
 
             do
             {
@@ -318,7 +305,6 @@ namespace FAULT_Configurator
             m_SelectedFault.TextConditionDisp = txtDisCond.Text;
             m_SelectedFault.TextActionDisp = txtDisAct.Text;
 
-            //TODO Refreshe fault List on IHM
             refreshFaultList();
         }
 
